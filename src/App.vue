@@ -75,7 +75,34 @@ const sortType = ref('default')
 const addedCount = ref(0)
 
 const visibleProducts = computed(() => {
-  return products
+  let result = [...products]
+  const query = searchQuery.value.trim().toLowerCase()
+
+  if (query) {
+    result = result.filter((product) =>
+      product.title.toLowerCase().includes(query)
+    )
+  }
+
+  if (selectedCategory.value !== 'all') {
+    result = result.filter((product) =>
+      product.category === selectedCategory.value
+    )
+  }
+
+  if (sortType.value === 'price-asc') {
+    result.sort((a, b) => a.price - b.price)
+  }
+
+  if (sortType.value === 'price-desc') {
+    result.sort((a, b) => b.price - a.price)
+  }
+
+  if (sortType.value === 'title-asc') {
+    result.sort((a, b) => a.title.localeCompare(b.title))
+  }
+
+  return result
 })
 </script>
 
