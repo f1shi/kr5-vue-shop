@@ -18,6 +18,48 @@
             Добавлено товаров: <strong>{{ addedCount }}</strong>
           </p>
         </div>
+
+        <form class="catalog-controls" @submit.prevent>
+          <div class="catalog-controls__group">
+            <label for="catalog-search">Поиск товара</label>
+            <input
+              id="catalog-search"
+              v-model="searchQuery"
+              class="catalog-controls__input"
+              type="search"
+              placeholder="Введите название товара"
+            >
+          </div>
+
+          <div class="catalog-controls__group">
+            <label for="category-filter">Категория</label>
+            <select
+              id="category-filter"
+              v-model="selectedCategory"
+              class="catalog-controls__select"
+            >
+              <option value="all">Все категории</option>
+              <option value="smartphones">Смартфоны</option>
+              <option value="laptops">Ноутбуки</option>
+              <option value="headphones">Наушники</option>
+              <option value="accessories">Аксессуары</option>
+            </select>
+          </div>
+
+          <div class="catalog-controls__group">
+            <label for="sort-select">Сортировка</label>
+            <select
+              id="sort-select"
+              v-model="sortType"
+              class="catalog-controls__select"
+            >
+              <option value="default">По умолчанию</option>
+              <option value="price-asc">Сначала дешевле</option>
+              <option value="price-desc">Сначала дороже</option>
+              <option value="title-asc">По названию А-Я</option>
+            </select>
+          </div>
+        </form>
       </section>
     </main>
   </div>
@@ -83,5 +125,35 @@ const visibleProducts = computed(() => {
 .catalog-page__header h2,
 .catalog-page__header p {
   margin: 0;
+}
+
+.catalog-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+}
+
+.catalog-controls__group {
+  display: grid;
+  gap: 6px;
+}
+
+.catalog-controls__input,
+.catalog-controls__select {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .catalog-controls {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
