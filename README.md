@@ -1,44 +1,60 @@
-# kr5-vue-shop
+# Контрольная работа №5: Vue-вариант
 
-This template should help get you started developing with Vue 3 in Vite.
+Тема: «Компонентная frontend-разработка на React или Vue с подготовкой проекта к подключению backend API».
 
-## Recommended IDE Setup
+## Практическая работа №25
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Тема: «Vue 3 + Vite: основы реактивности, шаблоны и директивы».
 
-## Recommended Browser Setup
+Выполнено:
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- создан проект `kr5-vue-shop`;
+- проект создан через `npm create vue@latest`;
+- проект запускается через `npm run dev`;
+- очищен демонстрационный шаблон;
+- создан файл `src/data/products.js`;
+- реализован каталог товаров в `App.vue`;
+- использован `<script setup>`;
+- использованы `ref` и `computed`;
+- использованы директивы `v-model`, `v-if`, `v-else`, `v-for`;
+- использованы сокращения `:` для `v-bind` и `@` для `v-on`;
+- реализован поиск товаров;
+- реализована фильтрация по категории;
+- реализована сортировка товаров;
+- реализовано пустое состояние каталога;
+- реализован базовый счётчик добавленных товаров.
 
-## Customize configuration
+## Структура проекта
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```text
+kr5-vue-shop/
+├── public/
+│   └── images/
+├── src/
+│   ├── assets/
+│   │   └── main.css
+│   ├── data/
+│   │   └── products.js
+│   ├── App.vue
+│   └── main.js
+├── README.md
+└── package.json
 ```
 
-### Compile and Hot-Reload for Development
+## Связь с КР №5
 
-```sh
+Проект является альтернативной Vue-реализацией SPA-интернет-магазина. Основной вариант КР №5 выполнен на React в репозитории `kr5-react-shop`. Товары те же, что и в React-версии: 10 позиций магазина электроники.
+
+На следующем занятии проект будет разделён на компоненты, будут рассмотрены props, emit, v-model и базовая маршрутизация.
+
+## Запуск
+
+```bash
+npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Автор
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+ФИО: Рыбаков Фёдор Иванович
+Группа: эфбо-09-25
