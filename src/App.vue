@@ -60,6 +60,58 @@
             </select>
           </div>
         </form>
+
+        <div v-if="visibleProducts.length > 0" class="products-grid">
+          <article
+            v-for="product in visibleProducts"
+            :key="product.id"
+            class="product-card"
+            :class="{ 'product-card--unavailable': !product.isAvailable }"
+          >
+            <img
+              v-if="product.image"
+              class="product-card__image"
+              :src="`${baseUrl}${product.image}`"
+              :alt="product.title"
+              width="640"
+              height="480"
+              loading="lazy"
+            >
+
+            <div class="product-card__body">
+              <h3 class="product-card__title">
+                {{ product.title }}
+              </h3>
+              <p class="product-card__description">
+                {{ product.description }}
+              </p>
+              <p class="product-card__price">
+                {{ formatPrice(product.price) }}
+              </p>
+              <p class="product-card__meta">
+                Категория: {{ getCategoryTitle(product.category) }}
+              </p>
+              <p class="product-card__meta">
+                Рейтинг: {{ product.rating }}
+              </p>
+              <p class="product-card__status">
+                {{ product.isAvailable ? 'В наличии' : 'Нет в наличии' }}
+              </p>
+              <button
+                class="product-card__button"
+                type="button"
+                :disabled="!product.isAvailable"
+                @click="handleAddToCart(product)"
+              >
+                {{ product.isAvailable ? 'Добавить' : 'Недоступно' }}
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <p v-else class="products-empty">
+          По выбранным условиям товары не найдены.
+        </p>
       </section>
     </main>
   </div>
@@ -73,6 +125,7 @@ const searchQuery = ref('')
 const selectedCategory = ref('all')
 const sortType = ref('default')
 const addedCount = ref(0)
+const baseUrl = import.meta.env.BASE_URL
 
 const visibleProducts = computed(() => {
   let result = [...products]
@@ -104,6 +157,26 @@ const visibleProducts = computed(() => {
 
   return result
 })
+
+function formatPrice(price) {
+  return `${price.toLocaleString('ru-RU')} руб.`
+}
+
+function getCategoryTitle(category) {
+  const categoryMap = {
+    smartphones: 'Смартфоны',
+    laptops: 'Ноутбуки',
+    headphones: 'Наушники',
+    accessories: 'Аксессуары'
+  }
+
+  return categoryMap[category] || category
+}
+
+function handleAddToCart(product) {
+  console.log(`Товар добавлен: ${product.title}`)
+  addedCount.value += 1
+}
 </script>
 
 <style scoped>
